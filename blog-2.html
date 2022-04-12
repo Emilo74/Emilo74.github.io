@@ -9,6 +9,16 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPCKXCV1KV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SPCKXCV1KV');
+  </script>
+
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -75,7 +85,7 @@
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs" style="background-image: url(assets/img/blog/pexels-pixabay-268976.jpg)">
+    <section id="breadcrumbs" class="breadcrumbs" style="background-image: url(assets/img/blog/blog-bg.png)">
         <div class="container">
   
           <div class="d-flex justify-content-between align-items-center">
@@ -93,13 +103,13 @@
     <section class="blog-wrapper sect-pt4" id="blog">
       <div class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="post-box">
               <div class="post-thumb">
-                <img src="assets/img/portfolio/yt.gif" class="img-fluid" alt="">
+                <img src="assets/img/blog/Course Review.gif" class="img-fluid" alt="">
               </div>
               <div class="post-meta">
-                <h1 class="article-title">Get to know me</h1>
+                <h1 class="article-title">Software Analysis and Testing</h1>
                 <ul>
                   <li>
                     <span class="bi bi-person"></span>
@@ -107,7 +117,7 @@
                   </li>
                   <li>
                     <span class="bi bi-tag"></span>
-                    <a href="#">Web Development</a>
+                    <a href="#">Course Notes</a>
                   </li>
                   <!-- <li>
                     <span class="bi bi-chat-left-text"></span>
@@ -116,113 +126,84 @@
                 </ul>
               </div>
               <div class="article-content">
+                <h5 style="margin-top: 50px;"> <strong>Intro to Software Analysis</strong> </h5>
                 <p>
-                  Publishing your first npm package is a rite of passage for any JavaScript developer. 
-                  It’s not hard, but can be a little confusing the first time around. In this blog post, we will cover the
-                  following: 
+                  Software analysis is the process of automatically discovering useful facts about programs. Software analysis can be broadly classified into three categories:
 
                     <ul>
-                    
-                      <li> What is npm? </li>
-
-                      <li>What is a package?  </li>
-
-                      <li>How do I publish my package? </li>
-
-                      <li>How do I use someone else’s package in my project? </li>
+                      <li> Dynamic (run-time) </li>
+                      <li> Static (compile-time)  </li>
+                      <li>Hybrid (combination of dynamic and static analysis) </li>
                     </ul>
-
-                    Let’s get started!
+                    The effectivess of a software analysis tool can be measured by its soundness and completeness.
                 </p>
                 <p>
-                  Once you have Node.js and Express installed, we can begin creating our package. First, we need to create a new folder for
-
-                  npm is the world’s largest software registry. It’s a collection of packages of code that can be shared by developers all over the world.
-
-                  The npm Registry contains more than 750,000 packages, and is growing every day. It’s used by millions of developers in their daily work, and is an essential part of their toolkit.
+                  <strong>Dynamic analysis</strong> tools gather information during run-time. These analyses discover information by running the program and observing its behavior. 
+                  Since a dynamic analysis gathers information by running the program, its cost is proportional to the execution time of the program. A longer run costs more than a shorter one.
+                  A dynamic analysis can achieve completeness - it is possible to design an analysis that will only report errors that can be triggered in a concerete execution of the program. 
+                  It may miss some errors, as it inspects only a finite number of runs whereas the program may contain an unbounded number of paths. 
+                  We say that a dynamic analysis is unsound; it may say that an incorrect program is correct.
                 </p>
-                <!-- <blockquote class="blockquote">
-                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                </blockquote> -->
-                <!-- <p>
-                  Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Mauris blandit
-                  aliquet elit, eget tincidunt
-                  nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit. Donec sollicitudin molestie malesuada.
-                </p> -->
+                <p>
+                  <strong>Static analysis</strong> tools gather information during compile-time. These analyses discover information by analyzing the program's source or binary code. 
+                  The cost of running a static analysis tool is proportional to the size of the program's source code. A larger program costs more than a smaller one.
+                  A static analysis can achieve soundness - it will not miss errors, but it may report spurious issues. Static analysis is incomplete; it may say that a correct program is incorrect.
+                </p>
+                <p>
+                  <strong>Hybrid analysis </strong> combine aspects of both dynamic and static analyses by combining run-time and compile-time information in interesting ways.
+                </p>
+                <blockquote class="blockquote">
+                  <p class="mb-0">A <strong>sound</strong> analysis means we can trust the correctness of its output.</p>
+                </blockquote>
+                <p>
+                  If it says a program is correct, then the program is definitely correct.
+                  However, the analysis may improperly say that some correct programs are not correct. A trivially sound analysis returns false for all inputs.
+                  In short, a sound analysis never says an incorrect program is correct. It may, however, say that a correct program is incorrect (in other words, incomplete).
+                </p>
+                <blockquote class="blockquote">
+                  <p class="mb-0">A <strong>complete</strong> analysis means we can trust that what it excludes from its analysis is incorrect.</p>
+                </blockquote>
+                <p>
+                  If it says a program is not correct, then the program is definitely not correct. 
+                  However, the analysis may improperly say that some incorrect programs are correct. A trivially complete analysis returns true for all inputs.
+                  In short, a complete analysis never says a correct program is incorrect. It may, however, say that an incorrect program is correct (in other words, unsound).
+                </p>
+                <p>
+                  A software analysis tool cannot be both sound and complete - at least, not if we want the analysis to terminate. 
+                  Designing a program analysis tool is an art that involves striking a suitable tradeoff between termination, soundness, and completeness.
+                </p>
+
+                <h5 style="margin-top: 50px;"> <strong>Intro to Software Testing </strong> </h5>
+                <p>
+                  Software testing checks whether a program's implementation agrees with its specification. Without a specification, there is nothing to test. 
+                  A developer writes the implementation, while the tester writes the specification. In order for testing to be effective, both the specification and the implementation must be correct.
+                  Software testing is an art and a science. Development resources are finite, so there is a limit to how many tests can be written for a given piece of software. 
+                  A specification can also evolve over time, so the test suite must be updated alongside it.
+                  Approaches to testing can be classified according to two orthogonal axes:
+
+                  <ul>
+                    <li> Manual vs Automated </li>
+                    <li> Black-box vs White-box  </li>
+                  </ul>
+                </p>
+
+                <p>
+                  <strong>Testing approaches</strong> are not stricly black-box or white-box. Likewise, testing need not be fully manual or fully automatic. 
+                  It is better to think of these axes as continua instead of discrete categories.
+                  Testing that requires more human direction falls closer to the manual side of the axis, while testing that is performed primarily without human direction falls closer to the automated side of the axis.
+                  Black-box testing refers to testing where the tester can see nothing about the tested program's internal mechanisms and logic. 
+                  The tester can only issue inputs to the program and observe the program's outputs. Program outputs are compared against the specifications required of the program.
+                  White-box testing refers to testing in which the internal details of the program being tested are fully available to the tester. 
+                  In this case, the tester can use these internal details to perform a more precise analysis of the tested program and uncover inputs that are likely to trigger errors.
+                  This course will focus more on automated testing strategies, like those outlined in Lesson 4.
+                </p>
               </div>
             </div>
-            <!-- <div class="box-comments">
-              <div class="title-box-2">
-                <h4 class="title-comments title-left">Comments (34)</h4>
-              </div>
-              <ul class="list-comments">
-                <li>
-                  <div class="comment-avatar">
-                    <img src="assets/img/testimonial-2.jpg" alt="">
-                  </div>
-                  <div class="comment-details">
-                    <h4 class="comment-author">Oliver Colmenares</h4>
-                    <span>18 Sep 2017</span>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                      ipsam temporibus maiores
-                      quae natus libero optio, at qui beatae ducimus placeat debitis voluptates amet corporis.
-                    </p>
-                    <a href="3">Reply</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="comment-avatar">
-                    <img src="assets/img/testimonial-4.jpg" alt="">
-                  </div>
-                  <div class="comment-details">
-                    <h4 class="comment-author">Carmen Vegas</h4>
-                    <span>18 Sep 2017</span>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                      ipsam temporibus maiores
-                      quae natus libero optio, at qui beatae ducimus placeat debitis voluptates amet corporis,
-                      veritatis deserunt.
-                    </p>
-                    <a href="3">Reply</a>
-                  </div>
-                </li>
-                <li class="comment-children">
-                  <div class="comment-avatar">
-                    <img src="assets/img/testimonial-2.jpg" alt="">
-                  </div>
-                  <div class="comment-details">
-                    <h4 class="comment-author">Oliver Colmenares</h4>
-                    <span>18 Sep 2017</span>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                      ipsam temporibus maiores
-                      quae.
-                    </p>
-                    <a href="3">Reply</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="comment-avatar">
-                    <img src="assets/img/testimonial-2.jpg" alt="">
-                  </div>
-                  <div class="comment-details">
-                    <h4 class="comment-author">Oliver Colmenares</h4>
-                    <span>18 Sep 2017</span>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                      ipsam temporibus maiores
-                      quae natus libero optio.
-                    </p>
-                    <a href="3">Reply</a>
-                  </div>
-                </li>
-              </ul>
-            </div> -->
+            <!-- End blog post details -->
+
           </div>
-          <div class="col-md-4">
-            <div class="widget-sidebar sidebar-search">
+          <div class="col-md-12">
+            <!-- <div class="widget-sidebar sidebar-search">
               <h5 class="sidebar-title">Search</h5>
               <div class="sidebar-content">
                 <form>
@@ -236,7 +217,7 @@
                   </div>
                 </form>
               </div>
-            </div>
+            </div> -->
             <div class="widget-sidebar">
               <h5 class="sidebar-title">Recent Posts</h5>
               <div class="sidebar-content">
@@ -250,7 +231,7 @@
                 </ul>
               </div>
             </div>
-            <div class="widget-sidebar">
+            <!-- <div class="widget-sidebar">
               <h5 class="sidebar-title">Archives</h5>
               <div class="sidebar-content">
                 <ul class="list-sidebar">
@@ -259,19 +240,22 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
             <div class="widget-sidebar widget-tags">
               <h5 class="sidebar-title">Tags</h5>
               <div class="sidebar-content">
                 <ul>
                   <li style="color: white;">
-                    Web
+                    LLVM
                   </li>
                   <li style="color: white;">
-                    Design
+                    C++
                   </li>
                   <li style="color: white;">
-                    JavaScript
+                    Typescript
+                  </li>
+                  <li style="color: white;">
+                    KLEE
                   </li>
                 </ul>
               </div>
