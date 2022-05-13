@@ -117,7 +117,7 @@
                   </li>
                   <li>
                     <span class="bi bi-tag"></span>
-                    <a href="#">Course Notes</a>
+                    <a href="#">Course Review</a>
                   </li>
                   <!-- <li>
                     <span class="bi bi-chat-left-text"></span>
@@ -126,76 +126,83 @@
                 </ul>
               </div>
               <div class="article-content">
-                <h5 style="margin-top: 50px;"> <strong>Intro to Software Analysis</strong> </h5>
+                <h5 style="margin-top: 50px;"> <strong>Overview</strong> </h5>
                 <p>
-                  Software analysis is the process of automatically discovering useful facts about programs. Software analysis can be broadly classified into three categories:
+                  This course was a survey course, touching on a lot of useful topics in the field of Software Analysis and Testing. The labs gave students the practical experience needed to really bring home the lessons learnt.
+                  There were 11 major topics and 7 main labs (plus a warm-up lab). Each lesson had a small quiz woth 1.5% and either a corresponding lab or was on the syllabus for the 20% exam. Labs were worth 8% each excluding the warm-up lab which weighed in at 4%.
+                  There was a bonus 5% for participation on the online platform, Ed. This proved to be very busy with lots of help from TAs and fellow students. The course was fairly easy to follow and understand whereas the labs required a bit of a leap as students were
+                  thrown into the deep end tasked with using the LLVM toolchain.
 
-                    <ul>
+                    <!-- <ul>
                       <li> Dynamic (run-time) </li>
                       <li> Static (compile-time)  </li>
                       <li>Hybrid (combination of dynamic and static analysis) </li>
                     </ul>
-                    The effectivess of a software analysis tool can be measured by its soundness and completeness.
+                    The effectivess of a software analysis tool can be measured by its soundness and completeness. -->
                 </p>
+                <h5 style="margin-top: 50px;"> <strong>Labs </strong>  (50.49/60)</h5>
+                <h6 style="margin-top: 10px;"> <strong>Lab 0</strong> (4/4) </h6>
                 <p>
-                  <strong>Dynamic analysis</strong> tools gather information during run-time. These analyses discover information by running the program and observing its behavior. 
-                  Since a dynamic analysis gathers information by running the program, its cost is proportional to the execution time of the program. A longer run costs more than a shorter one.
-                  A dynamic analysis can achieve completeness - it is possible to design an analysis that will only report errors that can be triggered in a concerete execution of the program. 
-                  It may miss some errors, as it inspects only a finite number of runs whereas the program may contain an unbounded number of paths. 
-                  We say that a dynamic analysis is unsound; it may say that an incorrect program is correct.
+                  This was an introductory lab where we were able to get our feet wet with the world of LLVM. Luckily, a well compiled Primer document was provided for the students which proved to be quite useful throughout all the labs.
+                  We were tasked with inspecting the LLVM IR code and counting the number of functions that existed.In total, I spent around an hour trying to complete this lab and ended up writing only about 5 lines of code max. It took a little digging around 
+                  in the doxygen documentation to find the right function calls etc. but this was a relatively easy lab.
                 </p>
+                <h6 style="margin-top: 10px;"> <strong>Lab 1 - Fuzzing</strong> (0/8) </h6>
                 <p>
-                  <strong>Static analysis</strong> tools gather information during compile-time. These analyses discover information by analyzing the program's source or binary code. 
-                  The cost of running a static analysis tool is proportional to the size of the program's source code. A larger program costs more than a smaller one.
-                  A static analysis can achieve soundness - it will not miss errors, but it may report spurious issues. Static analysis is incomplete; it may say that a correct program is incorrect.
+                  We were tasked with instrumenting function calls at compile time to modify the behaviour of the program. This is generally known as the most difficult lab of the course as it requires quite an amount of patience to complete. After the instrumentation was done,
+                  we needed to come up with different fuzzing techniques to cause a program to crash. I copy and pasted some code I found online and quickly realized how strict foreign universities are when it comes to academic integrity and plagiarism. I was
+                  given a 0 on this lab but the rest of the class spent around 30-40 hours trying to complete this.
                 </p>
+                <h6 style="margin-top: 10px;"> <strong>Lab 2 - Dataflow</strong> (8/8) </h6>
                 <p>
-                  <strong>Hybrid analysis </strong> combine aspects of both dynamic and static analyses by combining run-time and compile-time information in interesting ways.
+                  This lab was fairly straightforward. All that needed to be done was implement two algorithms from the lectures; Reaching Definitions Analysis and Liveness Analysis. Once you are comfortable with c++ and pointers this lab should be a 
+                  breeze to complete. I spent around 10 hours total for this one.
                 </p>
-                <blockquote class="blockquote">
-                  <p class="mb-0">A <strong>sound</strong> analysis means we can trust the correctness of its output.</p>
-                </blockquote>
+                <h6 style="margin-top: 10px;"> <strong>Lab 3 - Datalog</strong> (8/8) </h6>
                 <p>
-                  If it says a program is correct, then the program is definitely correct.
-                  However, the analysis may improperly say that some correct programs are not correct. A trivially sound analysis returns false for all inputs.
-                  In short, a sound analysis never says an incorrect program is correct. It may, however, say that a correct program is incorrect (in other words, incomplete).
+                  This was a really interesting lab where we had to write rules in Datalog to pass to the z3 solver which solved the same problem as lab 2. This really gave me an appreciation for these tools since we had to do the manual analysis prior to using
+                  these solvers. I spent around an hour on this lab.
                 </p>
-                <blockquote class="blockquote">
-                  <p class="mb-0">A <strong>complete</strong> analysis means we can trust that what it excludes from its analysis is incorrect.</p>
-                </blockquote>
+                <h6 style="margin-top: 10px;"> <strong>Lab 4 - Type Systems</strong> (7.13/8) </h6>
                 <p>
-                  If it says a program is not correct, then the program is definitely not correct. 
-                  However, the analysis may improperly say that some incorrect programs are correct. A trivially complete analysis returns true for all inputs.
-                  In short, a complete analysis never says a correct program is incorrect. It may, however, say that an incorrect program is correct (in other words, unsound).
+                  This was my first time working with Typescript and it was a really nice intro. We were given a codebase and had to do type checking of variables to find bugs. This was really cool to do because it's basically the same thing the compile does when
+                  you get that "TypeError" message. This was was super simple but easy to overthink, most students spent hours on this lab whereas I was on the other spectrum only spending like 2 hours adding in type checks wherever I can. I must've missed one 
+                  due to my lack of carefulness.
                 </p>
+                <h6 style="margin-top: 10px;"> <strong>Lab 5 - CBI</strong> (8/8) </h6>
                 <p>
-                  A software analysis tool cannot be both sound and complete - at least, not if we want the analysis to terminate. 
-                  Designing a program analysis tool is an art that involves striking a suitable tradeoff between termination, soundness, and completeness.
+                  I had gotten accustomed with the LLVM toolchain and it's documentation by now so this lab was a breeze for me. History dictates this lab to be one of the hardest in the course however this was not the case for me. I spent around 10 hours on this 
+                  lab, not much else to say about this one.
                 </p>
-
-                <h5 style="margin-top: 50px;"> <strong>Intro to Software Testing </strong> </h5>
+                <h6 style="margin-top: 10px;"> <strong>Lab 6 - Delta</strong> (7.76/8) </h6>
                 <p>
-                  Software testing checks whether a program's implementation agrees with its specification. Without a specification, there is nothing to test. 
-                  A developer writes the implementation, while the tester writes the specification. In order for testing to be effective, both the specification and the implementation must be correct.
-                  Software testing is an art and a science. Development resources are finite, so there is a limit to how many tests can be written for a given piece of software. 
-                  A specification can also evolve over time, so the test suite must be updated alongside it.
-                  Approaches to testing can be classified according to two orthogonal axes:
-
-                  <ul>
-                    <li> Manual vs Automated </li>
-                    <li> Black-box vs White-box  </li>
-                  </ul>
+                  Similar to lab 2, we needed to implement an algorithm form the lecture but in Java this time. I have very limited experience with Java (only touched it a little in undergrad) and I do not like the language. Nontheless, I'd say it is very easy to 
+                  score high in this lab but it is difficult to get full marks due to the amount of edge cases that must be covered. I spent around 15 hours working on this lab.
+                </p>
+                <h6 style="margin-top: 10px;"> <strong>Lab 7 - KLEE</strong> (7.6/8) </h6>
+                <p>
+                  This was my favorite lab as there was some back story to it. I like when labs can be related to real life scenarios. We played the role of a security analyst and had to dig through obfuscated code finding malicious intent using the KLEE 
+                  engine. I spent arounnd 5 hours working on this lab.
                 </p>
 
+                <h5 style="margin-top: 50px;"> <strong>Exam </strong>  (19/20)</h5>
                 <p>
-                  <strong>Testing approaches</strong> are not stricly black-box or white-box. Likewise, testing need not be fully manual or fully automatic. 
-                  It is better to think of these axes as continua instead of discrete categories.
-                  Testing that requires more human direction falls closer to the manual side of the axis, while testing that is performed primarily without human direction falls closer to the automated side of the axis.
-                  Black-box testing refers to testing where the tester can see nothing about the tested program's internal mechanisms and logic. 
-                  The tester can only issue inputs to the program and observe the program's outputs. Program outputs are compared against the specifications required of the program.
-                  White-box testing refers to testing in which the internal details of the program being tested are fully available to the tester. 
-                  In this case, the tester can use these internal details to perform a more precise analysis of the tested program and uncover inputs that are likely to trigger errors.
-                  This course will focus more on automated testing strategies, like those outlined in Lesson 4.
+                  The exam was given at the middle of the semester and was based off of 4 lectures. I think it was pretty straightforward and the exam did not try to trick you. Once you understand the content fully, there should be no issues. We were also allowed one 
+                  page of notes to look at during the exam. I'd suggest adding in anything you don't feel comfortable about (snippets of lesson quizzes even). For me, I always mix up the differences between a sound and complete analysis so I wrote down the definitions 
+                  and gave examples in my notes. Most of the class did pretty well in this exam and you can too.
+                </p> 
+
+                <h5 style="margin-top: 50px;"> <strong>Quizzes, Surveys, and Participation </strong>  (23.61/20)</h5>
+                <p>
+                  Not much to say about quizzes, they were mostly straighforward as well. I watched most lectures twice at 2x speed, this technique worked well for me and helped solidify any concepts taught. I'd suggest actually doing the practice quizzes provided
+                  as they are similar in format to the actual lesson quizzes. I gained a full 5% for participation as I was very active on the Ed discussions page. Many students had problems understanding the concepts and other students were able to share their unique 
+                  insights to help each other. The community was very supportive and willing to help one another.
+                </p>
+
+                <h5 style="margin-top: 50px;"> <strong>Concluding Thoughts </strong> </h5>
+                <p>
+                  I'd definitely reccomend this course to anyone in OMSCS as you learn valuable information that isn't really taught anywhere else. This course is not heavy however and should possibly be taken in the summer. I finished all the labs with over a month and a half 
+                  to spare. The TAs were very helpful on Ed and during office hours and I could not have pulled an A without that extra 5% credit. This is definitely a moderate class and a must-take for newcomers to the program.
                 </p>
               </div>
             </div>
